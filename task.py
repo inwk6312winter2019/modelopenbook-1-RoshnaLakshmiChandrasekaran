@@ -1,28 +1,24 @@
+import math
 def list_ifname_ip():
-	list_ifname_ip=[]
-	with open("running-config.cfg","rt") as in_file:
-		for interface in in_file:
-			list_ifname_ip.append(interface)
- 
-interface=[]
-vlan=[]
-macaddress=[]
-ipaddress=[]
+    myfile = open('running-config.cfg')
+    nameifdict=dict()
 
-for i in l:
-	a=""
-	b=""
-	t.split=""
-	if(t[0]=="interface"):
-		interface.append(t[1])
-	if(t[0]=="vlan"):
-		vlan.append(t[1])
-	if(t[0]=="macaddress"):
-		macaddress.append(t[2])
-	if(t[0] == "ipaddress"):
-		ipaddress.append(t[3])
+    for line in myfile:
+        if "nameif" in line:
+            myfilelist = line.split()
 
-print(interface)
-print(vlan)
-print(name)
-print(macaddress)
+            next(myfile)
+            templine = next(myfile)
+            mylist= templine.split()
+
+            if myfilelist[0]=='nameif':
+                if mylist[0] == 'ip':
+                    mytuple=(mylist[2:])
+                    nameifdict[myfilelist[1]]=mytuple
+
+    return (nameifdict)
+
+ipconfigs = list_ifname_ip()
+print(ipconfigs)
+
+
